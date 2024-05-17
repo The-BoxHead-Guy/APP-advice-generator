@@ -1,3 +1,4 @@
+"use strict";
 /**
  * "advice-load.js" comprehends the loading of the advice after fetching and connection
  * with the backend API (PHP)
@@ -7,7 +8,6 @@
 const adviceForm = document.getElementById("advice-form");
 const adviceElement = document.querySelector("#app-msg");
 const messageElement = document.querySelector(".app-counter");
-// console.log(adviceForm);
 
 /**
  * Handles the advice by making an AJAX request to the server and updating the UI.
@@ -15,16 +15,24 @@ const messageElement = document.querySelector(".app-counter");
  * @return {string} - The response from the server.
  */
 function adviceHandler(value) {
-  // console.log("working inside");
+  const URL = "http://127.0.0.1:8443/index.php";
 
-  const xmlHttp = new XMLHttpRequest();
-  xmlHttp.onload = function () {
-    if (this.status === 200) {
-      return updateUI(this.responseText);
-    }
-  };
-  xmlHttp.open("GET", "http://127.0.0.1:8443/index.php?q=" + "sent", true);
-  xmlHttp.send();
+  // Executing fetch() to get the data
+  fetch(URL)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Impossible to get data from server");
+      }
+    })
+    .then((data) => {
+      // console.log(data);
+      updateUI(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 /**
@@ -32,10 +40,10 @@ function adviceHandler(value) {
  * @param {string} value - The value containing the advice and id.
  */
 function updateUI(value) {
-  // Convert the value to JSON for object parsing
-  const response = JSON.parse(value);
-  console.log("response: ", response);
+  const response = value;
+  // console.log("response: ", response);
 
+  // Updates the UI in the HTML after setting the data
   adviceElement.innerHTML = response.advice_text;
   messageElement.innerHTML = `#${response.advice_id}`;
 }
@@ -43,5 +51,10 @@ function updateUI(value) {
 // Handles the form submission and prevents its default behavior.
 adviceForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  adviceHandler();
+});
+
+// Handles the DOMContentLoaded event
+document.addEventListener("DOMContentLoaded", () => {
   adviceHandler();
 });
