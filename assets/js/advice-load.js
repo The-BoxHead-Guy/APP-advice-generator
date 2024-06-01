@@ -15,7 +15,7 @@ const messageElement = document.querySelector(".app-counter");
  * @return {string} - The response from the server.
  */
 function adviceHandler(value) {
-  const URL = "http://127.0.0.1:8443/index.php";
+  const URL = "http://127.0.0.1:8443/assets/includes/advice-fetching.inc.php";
 
   // Executing fetch() to get the data
   fetch(URL)
