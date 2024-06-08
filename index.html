@@ -6,10 +6,10 @@
 
     <!-- Initializing inner files -->
 
-    <link rel="stylesheet" href="/assets/css/normalize.css" />
-    <link rel="stylesheet" href="/assets/css/index.css" />
-    <script src="/assets/js/advice-load.js" defer></script>
-    <script src="/assets/js/dice-animation.js" async></script>
+    <link rel="stylesheet" href="/app/style/normalize.css" />
+    <link rel="stylesheet" href="/app/style/app.css" />
+    <script src="/app/components/main/advice-load.js" defer></script>
+    <script src="/app/animations/dice-animation.js" async></script>
 
     <!-- Only for test purposes -->
     <!-- <script src="/assets/js/test.js"></script> -->
@@ -36,12 +36,12 @@
       <picture class="container">
         <source
           media="(min-width: 768px)"
-          srcset="./images/pattern-divider-desktop.svg"
+          srcset="./app/svg/pattern-divider-desktop.svg"
           alt=""
           class="app-divider"
         />
         <img
-          src="./images/pattern-divider-mobile.svg"
+          src="./app/svg/pattern-divider-mobile.svg"
           alt=""
           class="app-divider"
         />
@@ -50,7 +50,7 @@
       <!-- Advice button -->
       <form class="container" id="advice-form">
         <button class="app-button">
-          <img src="./images/icon-dice.svg" alt="dice" class="app-dice" />
+          <img src="./app/svg/icon-dice.svg" alt="dice" class="app-dice" />
         </button>
       </form>
     </main>
