@@ -16,6 +16,7 @@
   --grayish-blue: hsl(217, 19%, 38%);
   --dark-grayish-blue: hsl(217, 19%, 24%);
   --dark-blue: hsl(218, 23%, 16%);
+  --darker-blue: hsl(218, 15%, 16%);
 }
 
 body {
@@ -33,9 +34,10 @@ body {
 }
 
 /* Overlay */
+
 #overlay {
   position: fixed; /* Sit on top of the page content */
-  display: block; /* Hidden by default */
+  display: none; /* Hidden by default */
   width: 100%; /* Full width (cover the whole page) */
   height: 100%; /* Full height (cover the whole page) */
   top: 0;
@@ -132,5 +134,71 @@ body {
 
   & img[alt="dice"] {
     transition: transform 0.5s;
+  }
+}
+
+/* login & signup */
+
+input {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  color: var(--darker-blue);
+  border: none;
+}
+
+.login-form {
+  position: fixed;
+  z-index: 3;
+  top: 150%;
+  background-color: var(--dark-blue);
+  width: min(80%, 22rem);
+  padding: 1rem;
+  border-radius: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+
+  transition: all 0.5s;
+
+  & .login-form__title {
+    color: var(--neon-green);
+
+    h2 {
+      margin-block: 0.75rem;
+    }
+  }
+
+  & .login-form_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    margin-block: 1rem;
+  }
+
+  & .login-form_inputs input:nth-of-type(1) {
+    margin-block-end: 1rem;
+  }
+
+  & .login-form__button {
+    & .login-form__submit {
+      background-color: var(--dark-grayish-blue);
+      border: none;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      color: var(--neon-green);
+      cursor: pointer;
+      transition: all 0.5s;
+
+      margin-block-end: 1rem;
+
+      &:hover {
+        background-color: var(--neon-green);
+        color: var(--dark-blue);
+      }
+    }
   }
 }
