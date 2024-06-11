@@ -5,32 +5,40 @@ const loginButton = document.querySelector(".nav-links__login");
 const signupButton = document.querySelector(".nav-links__signup");
 
 const loginForm = document.getElementById("login-form");
+const signupForm = document.getElementById("signup-form");
 
-// Activates the overlay after click
+/* Opening the overlay */
 
-// todo: Only change the opacity of the overlay in order to set the transition effect properly.
-
-loginButton.addEventListener("click", () => {
+function openForm(element) {
+  element.style.display = "flex";
   overlay.style.display = "flex";
-  loginForm.style.display = "flex";
 
   setTimeout(() => {
-    loginForm.style.top = "50%";
-    loginForm.style.transform = "translateY(-50%)";
+    element.style.top = "50%";
+    element.style.transform = "translateY(-50%)";
   }, 500);
-});
+}
+
+function closeForm(element) {
+  element.style.top = "150%";
+
+  setTimeout(() => {
+    element.style.display = "none";
+    overlay.style.display = "none";
+  }, 1000);
+}
 
 signupButton.addEventListener("click", () => {
-  overlay.style.display = "flex";
+  openForm(signupForm);
+});
+
+loginButton.addEventListener("click", () => {
+  openForm(loginForm);
 });
 
 /* Closing the overlay */
 
 overlay.addEventListener("click", () => {
-  loginForm.style.top = "150%";
-
-  setTimeout(() => {
-    overlay.style.display = "none";
-    loginForm.style.display = "none";
-  }, 1000);
+  closeForm(loginForm);
+  closeForm(signupForm);
 });

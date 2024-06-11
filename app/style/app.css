@@ -146,7 +146,12 @@ input {
   border: none;
 }
 
-.login-form {
+label {
+  margin-block-start: 1.25rem;
+}
+
+.login-form,
+.signup-form {
   position: fixed;
   z-index: 3;
   top: 150%;
@@ -163,7 +168,8 @@ input {
 
   transition: all 0.5s;
 
-  & .login-form__title {
+  & .login-form__title,
+  & .signup-form__title {
     color: var(--neon-green);
 
     h2 {
@@ -171,7 +177,8 @@ input {
     }
   }
 
-  & .login-form_inputs {
+  & .login-form_inputs,
+  & .signup-form_inputs {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -179,12 +186,12 @@ input {
     margin-block: 1rem;
   }
 
-  & .login-form_inputs input:nth-of-type(1) {
-    margin-block-end: 1rem;
-  }
+  & .login-form__button,
+  & .signup-form__button {
+    margin-block-start: 2rem;
 
-  & .login-form__button {
-    & .login-form__submit {
+    & .login-form__submit,
+    & .signup-form__submit {
       background-color: var(--dark-grayish-blue);
       border: none;
       padding: 1rem;
