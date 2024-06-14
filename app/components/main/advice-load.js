@@ -1,4 +1,5 @@
 "use strict";
+
 /**
  * "advice-load.js" comprehends the loading of the advice after fetching and connection
  * with the backend API (PHP)
@@ -15,7 +16,7 @@ const messageElement = document.querySelector(".app-counter");
  * @return {string} - The response from the server.
  */
 function adviceHandler(value) {
-  const URL = "http://127.0.0.1:8443/assets/includes/advice-fetching.inc.php";
+  const URL = "http://127.0.0.1:8443/api/includes/advice-fetching.php";
 
   // Executing fetch() to get the data
   fetch(URL)
