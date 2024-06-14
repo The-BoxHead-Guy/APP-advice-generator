@@ -12,6 +12,7 @@
     <script src="/app/animations/dice-animation.js" async></script>
     <script type="module" src="/app/animations/overlay.js"></script>
     <script type="module" src="/app/components/login/loginForm.js"></script>
+    <script type="module" src="/app/components/signup/signupForm.js"></script>
 
     <!-- Only for test purposes -->
     <!-- <script src="/assets/js/test.js"></script> -->
@@ -106,17 +107,12 @@
 
       <div class="signup-form_inputs">
         <label for="name">Username</label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          placeholder="JohnDoe25"
-        />
+        <input type="text" name="name" id="username" placeholder="JohnDoe25" />
         <label for="email">Email</label>
         <input
           type="text"
           name="email"
-          id="email"
+          id="signup-email"
           placeholder="example@gmail.com"
           require
         />
@@ -124,14 +120,14 @@
         <input
           type="password"
           name="password"
-          id="password"
+          id="signup-password"
           placeholder="••••••••"
           required
         />
         <label for="confirm-password">Confirm Your Password</label>
         <input
           type="password"
-          name="confirm-password"
+          name="password-repeat"
           id="confirm-password"
           placeholder="••••••••"
           required
