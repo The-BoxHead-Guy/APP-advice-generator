@@ -38,5 +38,24 @@ async function sendLoginData(email, password) {
   });
 
   const data = await response.json();
-  console.log(data);
+
+  // Creating the cookie with the JWT token
+  try {
+    if (response.status === 200) {
+      setJwtCookie(data);
+
+      // Refresh the page after 1 second
+      setTimeout(function () {
+        location.reload();
+      }, 1000);
+    } else {
+      throw new Error(data.message);
+    }
+  } catch (error) {
+    console.log("Login error: " + error);
+  }
+}
+
+function setJwtCookie(token) {
+  document.cookie = `jwt=${token}`;
 }

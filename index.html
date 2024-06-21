@@ -1,142 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Initializing inner files -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="/app/style/normalize.css" />
-    <link rel="stylesheet" href="/app/style/app.css" />
-    <script src="/app/components/main/advice-load.js" defer></script>
-    <script src="/app/animations/dice-animation.js" async></script>
-    <script type="module" src="/app/animations/overlay.js"></script>
-    <script type="module" src="/app/components/login/loginForm.js"></script>
-    <script type="module" src="/app/components/signup/signupForm.js"></script>
+  <!-- Initializing inner files -->
 
-    <!-- Only for test purposes -->
-    <!-- <script src="/assets/js/test.js"></script> -->
+  <link rel="stylesheet" href="/app/style/normalize.css" />
+  <link rel="stylesheet" href="/app/style/app.css" />
 
-    <title>Advice generator app</title>
-  </head>
+  <script src="/app/components/main/advice-load.js" defer></script>
+  <script src="/app/animations/dice-animation.js" async></script>
+  <script type="module" src="/app/animations/overlay.js"></script>
+  <script type="module" src="/app/components/login/loginForm.js"></script>
+  <script type="module" src="/app/components/signup/signupForm.js"></script>
+  <script type="module" src="/app/components/main/loadProfile.js" defer></script>
 
-  <body>
-    <nav>
-      <div class="nav-links">
-        <p class="nav-links__login">Log-in</p>
-        <p class="nav-links__signup">Sign-up</p>
-      </div>
-    </nav>
+  <!-- Only for test purposes -->
+  <!-- <script src="/assets/js/test.js"></script> -->
 
-    <!-- Overlay -->
-    <div id="overlay"></div>
+  <title>Advice generator app</title>
+</head>
 
-    <!-- Main -->
-    <main class="app">
-      <!-- Advice title -->
-      <div class="container">
-        <h3 id="title" class="app-title">
-          Advice
-          <span class="app-counter"></span>
-        </h3>
-      </div>
+<body>
+  <nav>
+    <div class="nav-links">
+      <p class="nav-links__login">Log-in</p>
+      <p class="nav-links__signup">Sign-up</p>
+    </div>
 
-      <!-- Advice Message -->
-      <div class="container">
-        <p id="app-msg" class="app-msg"></p>
-      </div>
+    <div class="logged">
+      <p>Welcome back <span id="logged-user"></span>!</p>
+    </div>
+  </nav>
 
-      <!-- Divider -->
-      <picture class="container">
-        <source
-          media="(min-width: 768px)"
-          srcset="./app/svg/pattern-divider-desktop.svg"
-          alt=""
-          class="app-divider"
-        />
-        <img
-          src="./app/svg/pattern-divider-mobile.svg"
-          alt=""
-          class="app-divider"
-        />
-      </picture>
 
-      <!-- Advice button -->
-      <form class="container" id="advice-form">
-        <button class="app-button">
-          <img src="./app/svg/icon-dice.svg" alt="dice" class="app-dice" />
-        </button>
-      </form>
-    </main>
+  <!-- Overlay -->
+  <div id="overlay"></div>
 
-    <!-- Log-in Screen -->
-    <form class="login-form" id="login-form">
-      <div class="login-form__title">
-        <h2>Log-in</h2>
-      </div>
+  <!-- Main -->
+  <main class="app">
+    <!-- Advice title -->
+    <div class="container">
+      <h3 id="title" class="app-title">
+        Advice
+        <span class="app-counter"></span>
+      </h3>
+    </div>
 
-      <div class="login-form_inputs">
-        <label for="email">Email</label>
-        <input
-          type="text"
-          name="email"
-          id="email"
-          placeholder="example@gmail.com"
-          require
-        />
-        <label for="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="••••••••"
-          required
-        />
-      </div>
+    <!-- Advice Message -->
+    <div class="container">
+      <p id="app-msg" class="app-msg"></p>
+    </div>
 
-      <div class="login-form__button">
-        <button class="login-form__submit">Login</button>
-      </div>
+    <!-- Divider -->
+    <picture class="container">
+      <source media="(min-width: 768px)" srcset="./app/svg/pattern-divider-desktop.svg" alt="" class="app-divider" />
+      <img src="./app/svg/pattern-divider-mobile.svg" alt="" class="app-divider" />
+    </picture>
+
+    <!-- Advice button -->
+    <form class="container" id="advice-form">
+      <button class="app-button">
+        <img src="./app/svg/icon-dice.svg" alt="dice" class="app-dice" />
+      </button>
     </form>
+  </main>
 
-    <!-- Sign-up Screen -->
-    <form class="signup-form" id="signup-form">
-      <div class="signup-form__title">
-        <h2>Sign-Up</h2>
-      </div>
+  <!-- Log-in Screen -->
+  <form class="login-form" id="login-form">
+    <div class="login-form__title">
+      <h2>Log-in</h2>
+    </div>
 
-      <div class="signup-form_inputs">
-        <label for="name">Username</label>
-        <input type="text" name="name" id="username" placeholder="JohnDoe25" />
-        <label for="email">Email</label>
-        <input
-          type="text"
-          name="email"
-          id="signup-email"
-          placeholder="example@gmail.com"
-          require
-        />
-        <label for="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="signup-password"
-          placeholder="••••••••"
-          required
-        />
-        <label for="confirm-password">Confirm Your Password</label>
-        <input
-          type="password"
-          name="password-repeat"
-          id="confirm-password"
-          placeholder="••••••••"
-          required
-        />
-      </div>
+    <div class="login-form_inputs">
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" placeholder="example@gmail.com" require />
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" placeholder="••••••••" required />
+    </div>
 
-      <div class="signup-form__button">
-        <button class="signup-form__submit">Signup</button>
-      </div>
-    </form>
-  </body>
+    <div class="login-form__button">
+      <button class="login-form__submit">Login</button>
+    </div>
+  </form>
+
+  <!-- Sign-up Screen -->
+  <form class="signup-form" id="signup-form">
+    <div class="signup-form__title">
+      <h2>Sign-Up</h2>
+    </div>
+
+    <div class="signup-form_inputs">
+      <label for="name">Username</label>
+      <input type="text" name="name" id="username" placeholder="JohnDoe25" />
+      <label for="email">Email</label>
+      <input type="text" name="email" id="signup-email" placeholder="example@gmail.com" require />
+      <label for="password">Password</label>
+      <input type="password" name="password" id="signup-password" placeholder="••••••••" required />
+      <label for="confirm-password">Confirm Your Password</label>
+      <input type="password" name="password-repeat" id="confirm-password" placeholder="••••••••" required />
+    </div>
+
+    <div class="signup-form__button">
+      <button class="signup-form__submit">Signup</button>
+    </div>
+  </form>
+</body>
+
 </html>
