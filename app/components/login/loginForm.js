@@ -1,6 +1,7 @@
 "use strict";
 
 import { URL_LOGIN as URL } from "./../fetch/config.js";
+import Cookies from "/node_modules/js-cookie/dist/js.cookie.mjs";
 
 /**
  * *login-form.js* comprehends the management of the login form after submitting"
@@ -57,5 +58,5 @@ async function sendLoginData(email, password) {
 }
 
 function setJwtCookie(token) {
-  document.cookie = `jwt=${token}`;
+  Cookies.set("jwt", token);
 }
