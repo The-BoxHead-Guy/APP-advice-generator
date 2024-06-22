@@ -29,18 +29,6 @@ nav {
     }
   }
 
-  & .nav-links__signup {
-    background-color: var(--neon-green);
-    color: black;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-
-    &:hover {
-      background-color: var(--dark-grayish-blue);
-      color: var(--light-cyan);
-    }
-  }
-
   & .nav-links__login,
   & .nav-links__signup {
     transition: all 0.15s ease-in;
@@ -50,5 +38,72 @@ nav {
       transform: scale(1.1);
       transition: all 0.3s ease-out;
     }
+  }
+}
+
+.nav-links__signup,
+.logged__logout-btn {
+  background-color: var(--neon-green);
+  color: black;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.nav-links__signup {
+  transition: all 0.15s ease-in;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease-out;
+    background-color: var(--dark-grayish-blue);
+    color: var(--light-cyan);
+  }
+}
+
+.logged__logout-btn:hover {
+  background-color: var(--dark-grayish-blue);
+  color: var(--light-cyan);
+  cursor: pointer;
+}
+
+.logged {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 75%;
+  font-size: calc(1rem + 0.25vw);
+}
+
+.logged__btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+}
+
+#logged-user {
+  color: var(--neon-green);
+}
+
+.loading {
+  width: 20px;
+  padding: 4px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--neon-green);
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+
+/* Animations */
+
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
   }
 }

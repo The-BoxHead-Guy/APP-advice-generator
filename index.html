@@ -16,6 +16,7 @@
   <script type="module" src="/app/components/login/loginForm.js"></script>
   <script type="module" src="/app/components/signup/signupForm.js"></script>
   <script type="module" src="/app/components/main/loadProfile.js" defer></script>
+  <script type="module" src="/app/components/main/logout.js" async></script>
 
   <!-- Only for test purposes -->
   <!-- <script src="/assets/js/test.js"></script> -->
@@ -32,6 +33,10 @@
 
     <div class="logged">
       <p>Welcome back <span id="logged-user"></span>!</p>
+
+      <div class="logged__btn-container">
+        <p class="logged__logout-btn" id="logout-btn">Logout</p>
+      </div>
     </div>
   </nav>
 
