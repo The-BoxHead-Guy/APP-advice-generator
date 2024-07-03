@@ -50,10 +50,10 @@ async function sendLoginData(email, password) {
         location.reload();
       }, 1000);
     } else {
-      throw new Error(data.message);
+      throw new Error(data);
     }
   } catch (error) {
-    console.log("Login error: " + error);
+    console.log(error);
   }
 }
 

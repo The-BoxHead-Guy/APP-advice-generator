@@ -1,6 +1,7 @@
 /* Typography connection */
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 @import url("app-nav.css");
+@import url("normalize.css");
 
 :root {
   /* typography */

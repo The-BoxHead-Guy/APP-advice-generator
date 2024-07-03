@@ -5,22 +5,38 @@ import Cookies from "/node_modules/js-cookie/dist/js.cookie.mjs";
 const loggedNav = document.querySelector(".logged");
 const username = document.getElementById("logged-user");
 const navLinks = document.querySelector(".nav-links");
+const adminOptions = document.getElementById("admin-crud");
+const loggedContainer = document.querySelector(".logged__btn-container");
 
 // Getting cookie data
-const cookieData = Cookies.get("jwt");
+const cookieDataToken = Cookies.get("jwt");
+const paragraph = document.createElement("a");
+
+paragraph.classList.add("logged__admin-crud");
+paragraph.setAttribute("id", "admin-crud");
+paragraph.setAttribute("href", "app/components/admin/admin.html");
+paragraph.innerHTML = "admin options";
 
 // Pre-defined states of the application
 loggedNav.style.display = "none";
 
-if (cookieData) {
+if (cookieDataToken) {
   navLinks.style.display = "none";
 
   const setProfileData = async () => {
-    const profileInfo = await getProfileData(cookieData);
+    const profileInfo = await getProfileData(cookieDataToken);
 
     if (profileInfo) {
       loggedNav.style.display = "flex";
       username.textContent = profileInfo.username;
+
+      if (profileInfo.role === "admin") {
+        loggedContainer.appendChild(paragraph);
+      }
+
+      if (profileInfo.role === "user") {
+        console.log("this user is user");
+      }
     } else {
       console.log("Profile data not found");
     }

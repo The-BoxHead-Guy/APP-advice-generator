@@ -47,6 +47,11 @@ nav {
   color: black;
   padding: 0.5rem;
   border-radius: 0.5rem;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .nav-links__signup {
@@ -77,9 +82,22 @@ nav {
 
 .logged__btn-container {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
-  width: 6rem;
+  gap: 1rem;
+
+  & .logged__admin-crud {
+    color: var(--neon-green);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--neon-green-dark);
+      transform: scale(1.05);
+    }
+  }
 }
 
 #logged-user {
