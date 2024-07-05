@@ -1,10 +1,14 @@
 {
   "name": "web-advice-generator",
+  "private": true,
   "version": "1.0.0",
   "description": "Front-end website that runs the main application ",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "local": "vite --host 127.0.0.1 --port 5500"
   },
   "repository": {
     "type": "git",
@@ -18,5 +22,8 @@
   "homepage": "https://github.com/The-BoxHead-Guy/web-advice-generator#readme",
   "dependencies": {
     "js-cookie": "3.0.5"
+  },
+  "devDependencies": {
+    "vite": "^5.3.3"
   }
 }
