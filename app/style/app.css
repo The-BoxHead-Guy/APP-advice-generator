@@ -20,7 +20,12 @@
   --darker-blue: hsl(218, 15%, 16%);
 }
 
-body {
+/* Utilities */
+.hidden {
+  display: none;
+}
+
+#app {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
