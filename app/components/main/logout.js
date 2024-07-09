@@ -1,14 +1,21 @@
-import Cookies from "/node_modules/js-cookie/dist/js.cookie.mjs";
+import Cookies from "js-cookie";
 
-const logoutBtn = document.getElementById("logout-btn");
+class Logout {
+  constructor() {
+    this.logoutBtn = document.getElementById("logout-btn");
+  }
 
-logoutBtn.addEventListener("click", () => {
-  Cookies.remove("jwt");
-  logoutBtn.textContent = "";
+  triggerLogout() {
+    this.logoutBtn.addEventListener("click", () => {
+      Cookies.remove("jwt");
+      this.logoutBtn.textContent = "";
+      this.logoutBtn.setAttribute("class", "loading logged__logout-btn");
 
-  logoutBtn.setAttribute("class", "loading logged__logout-btn");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    });
+  }
+}
 
-  setTimeout(() => {
-    window.location.reload();
-  }, 1000);
-});
+export default Logout;
