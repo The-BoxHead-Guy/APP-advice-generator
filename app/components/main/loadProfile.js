@@ -48,12 +48,7 @@ class LoadProfile {
           const adminOptionsElement = this.createAdminOptionsElement();
 
           this.loggedContainer.appendChild(adminOptionsElement);
-        }
-
-        if (profileInfo.role === "user") {
-          console.log("this user is user");
-        } else {
-          throw new Error("Profile role doesn't exist");
+          return;
         }
       } catch (error) {
         console.log("Error at 'setProfileData': " + error);

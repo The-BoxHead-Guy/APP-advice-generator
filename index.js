@@ -11,10 +11,6 @@ render();
 const adviceLoading = new AdviceLoad();
 adviceLoading.submitEvent(adviceLoading.domElements.adviceForm);
 
-/* Profile Loading */
-const profileLoading = new LoadProfile();
-profileLoading.setProfileData();
-
 /* Logout */
 const logout = new Logout();
 logout.triggerLogout();
@@ -22,6 +18,10 @@ logout.triggerLogout();
 /* Login */
 const login = new Login();
 login.setDataFromLoginForm();
+
+/* Profile Loading */
+const profileLoading = new LoadProfile();
+profileLoading.setProfileData();
 
 const overlay = new Overlay();
 overlay.triggerLoginForm();
