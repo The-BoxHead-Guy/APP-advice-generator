@@ -41,9 +41,12 @@
 
 /* Overlay */
 
+.overlay {
+  display: none;
+}
+
 #overlay {
   position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
   width: 100%; /* Full width (cover the whole page) */
   height: 100%; /* Full height (cover the whole page) */
   top: 0;
@@ -56,6 +59,10 @@
   cursor: pointer; /* Add a pointer on hover */
 
   transition: all 0.5s ease-in-out;
+}
+
+.overlay--active {
+  display: flex;
 }
 
 /* App */
@@ -156,6 +163,12 @@ label {
   margin-block-start: 1.25rem;
 }
 
+.login-form.form--cinematic,
+.signup-form.form--cinematic {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .login-form,
 .signup-form {
   position: fixed;
@@ -165,7 +178,6 @@ label {
   width: min(80%, 22rem);
   padding: 1rem;
   border-radius: 0.5rem;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
