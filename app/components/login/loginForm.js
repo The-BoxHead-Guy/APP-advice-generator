@@ -1,62 +1,83 @@
 "use strict";
 
 import { URL_LOGIN as URL } from "./../fetch/config.js";
-import Cookies from "/node_modules/js-cookie/dist/js.cookie.mjs";
+import Cookies from "js-cookie";
 
 /**
- * *login-form.js* comprehends the management of the login form after submitting"
+ * Advice-Generator
  */
+class Login {
+  constructor() {
+    this.loginForm = document.getElementById("login-form");
+    this._email = document.getElementById("email");
+    this._password = document.getElementById("password");
+  }
 
-/**
- * Advice-Generator login form variables as object.
- */
-const LoginAssets = {
-  loginForm: document.getElementById("login-form"),
-  emailInput: document.getElementById("email"),
-  passwordInput: document.getElementById("password"),
-};
+  get email() {
+    return this._email;
+  }
 
-LoginAssets.loginForm.addEventListener("submit", (event) => {
-  event.preventDefault();
+  get password() {
+    return this._password;
+  }
 
-  // Setting form values after submitting
-  const email = LoginAssets.emailInput.value;
-  const password = LoginAssets.passwordInput.value;
+  set email(email) {
+    this._email = email;
+  }
 
-  const status = sendLoginData(email, password);
-});
+  set password(password) {
+    this._password = password;
+  }
 
-async function sendLoginData(email, password) {
-  const response = await fetch(URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: email,
-      password: password,
-    }),
-  });
+  setDataFromLoginForm() {
+    this.loginForm.addEventListener("submit", (event) => {
+      event.preventDefault();
 
-  const data = await response.json();
+      this.email = this.email.value;
+      this.password = this.password.value;
 
-  // Creating the cookie with the JWT token
-  try {
-    if (response.status === 200) {
-      setJwtCookie(data);
+      this.sendLoginDataToApi();
+    });
+  }
 
-      // Refresh the page after 1 second
-      setTimeout(function () {
-        location.reload();
-      }, 1000);
-    } else {
-      throw new Error(data);
+  async sendLoginDataToApi() {
+    const response = await fetch(URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: this.email,
+        password: this.password,
+      }),
+    });
+
+    const data = await response.json();
+
+    // Creating the cookie with the JWT token
+    try {
+      if (response.status === 200 && response.ok === true) {
+        this.setJwtCookie(data);
+
+        // Sets status for client
+
+        // Refresh the page after 1 second
+        setTimeout(function () {
+          location.reload();
+        }, 1000);
+
+        return (this.status = data);
+      } else {
+        throw new Error(data);
+      }
+    } catch (error) {
+      console.log("Error at 'sendLoginDataToApi': " + error);
     }
-  } catch (error) {
-    console.log(error);
+  }
+
+  setJwtCookie(token) {
+    Cookies.set("jwt", token);
   }
 }
 
-function setJwtCookie(token) {
-  Cookies.set("jwt", token);
-}
+export default Login;

@@ -21,6 +21,7 @@ logout.triggerLogout();
 
 /* Login */
 const login = new Login();
+login.setDataFromLoginForm();
 
 const overlay = new Overlay();
 overlay.triggerLoginForm();
