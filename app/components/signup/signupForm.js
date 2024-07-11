@@ -6,71 +6,90 @@
 
 import { URL_SIGNUP as URL } from "./../fetch/config.js";
 
-/**
- * Signup form DOM element
- */
-const signupForm = document.getElementById("signup-form");
+class Signup {
+  constructor() {
+    this.usernameInput = document.getElementById("username");
+    this.emailInput = document.getElementById("signup-email");
+    this.passwordInput = document.getElementById("signup-password");
+    this.confirmPasswordInput = document.getElementById("confirm-password");
 
-/**
- * Advice-Generator signup form variables as object.
- */
-const signupAssets = {
-  usernameInput: document.getElementById("username"),
-  emailInput: document.getElementById("signup-email"),
-  passwordInput: document.getElementById("signup-password"),
-  confirmPasswordInput: document.getElementById("confirm-password"),
-};
+    this.signupForm = document.getElementById("signup-form");
+  }
 
-/**
- * Handles the form submission and prevents its default behavior.
- */
-signupForm.addEventListener("submit", (event) => {
-  event.preventDefault();
+  setSubmitFormValues() {
+    this.signupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-  // Setting form values after submitting
-  const username = signupAssets.usernameInput.value;
-  const email = signupAssets.emailInput.value;
-  const password = signupAssets.passwordInput.value;
-  const confirmPassword = signupAssets.confirmPasswordInput.value;
+      this._username = this.usernameInput.value;
+      this._email = this.emailInput.value;
+      this._password = this.passwordInput.value;
+      this._confirmPassword = this.confirmPasswordInput.value;
 
-  signupSendData(parseJsonData(username, email, password, confirmPassword));
-});
+      this.signupSendData(
+        this.parseJsonData(
+          this.username,
+          this.email,
+          this.password,
+          this.confirmPassword
+        )
+      );
+    });
+  }
 
-/**
- * Sends the signup data to the server.
- *
- * @param {string} bodyData - The body data to be sent to the server.
- */
-async function signupSendData(bodyData) {
-  console.log(bodyData);
+  get username() {
+    return this._username;
+  }
 
-  const response = await fetch(URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "Application/json",
-    },
-    body: bodyData,
-  });
+  get email() {
+    return this._email;
+  }
 
-  const data = await response.json();
+  get password() {
+    return this._password;
+  }
 
-  console.log(data);
+  get confirmPassword() {
+    return this._confirmPassword;
+  }
+
+  /**
+   * Sends the signup data to the server.
+   *
+   * @param {string} bodyData - The body data to be sent to the server.
+   */
+  async signupSendData(bodyData) {
+    console.log(bodyData);
+
+    const response = await fetch(URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/json",
+      },
+      body: bodyData,
+    });
+
+    const data = await response.json();
+
+    console.log(data);
+  }
+
+  /**
+   * Parses the input data into a specific JSON format that works according the API
+   *
+   * @param {string} username - The username to be included in the JSON object.
+   * @param {string} email - The email to be included in the JSON object.
+   * @param {string} password - The password to be included in the JSON object.
+   * @param {string} confirmPassword - The confirmed password to be included in the JSON object.
+   * @return {string} A JSON string representing the input data.
+   */
+  parseJsonData(username, email, password, confirmPassword) {
+    return JSON.stringify({
+      name: username,
+      email: email,
+      password: password,
+      "password-repeat": confirmPassword,
+    });
+  }
 }
 
-/**
- * Parses the input data into a specific JSON format that works according the API
- *
- * @param {string} username - The username to be included in the JSON object.
- * @param {string} email - The email to be included in the JSON object.
- * @param {string} password - The password to be included in the JSON object.
- * @param {string} confirmPassword - The confirmed password to be included in the JSON object.
- * @return {string} A JSON string representing the input data.
- */
-function parseJsonData(username, email, password, confirmPassword) {
-  return JSON.stringify({
-    name: username,
-    email: email,
-    password: password,
-    "password-repeat": confirmPassword,
-  });
-}
+export default Signup;

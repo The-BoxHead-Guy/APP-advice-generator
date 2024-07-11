@@ -4,6 +4,7 @@ import LoadProfile from "./app/components/main/loadProfile.js";
 import Logout from "./app/components/main/logout.js";
 import Login from "./app/components/login/loginForm.js";
 import Overlay from "./app/animations/overlay/overlay.js";
+import Signup from "./app/components/signup/signupForm.js";
 
 render();
 
@@ -18,6 +19,9 @@ logout.triggerLogout();
 /* Login */
 const login = new Login();
 login.setDataFromLoginForm();
+
+const signup = new Signup();
+signup.setSubmitFormValues();
 
 /* Profile Loading */
 const profileLoading = new LoadProfile();
