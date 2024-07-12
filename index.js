@@ -6,6 +6,7 @@ import Login from "./app/components/login/loginForm.js";
 import Overlay from "./app/animations/overlay/overlay.js";
 import Signup from "./app/components/signup/signupForm.js";
 import DiceAnimation from "./app/animations/dice-animation.js";
+import Router from "./app/router.js";
 
 render();
 
@@ -38,4 +39,11 @@ DiceAnimation.triggerDiceAnimation();
 // DOM loading event
 document.addEventListener("DOMContentLoaded", () => {
   adviceLoading.adviceHandler();
+
+  // Router
+  const router = new Router();
+
+  router.router();
+  router.triggerUrl();
+  router.activatePopstateUrlChange();
 });
