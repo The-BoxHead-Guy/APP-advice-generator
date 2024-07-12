@@ -1,10 +1,12 @@
-"use strict";
+import Render from "./render.js";
+
+const render = new Render();
 
 class Router {
   constructor() {
     this.routes = [
-      { path: "/", view: () => console.log("home") },
-      { path: "/admin", view: () => console.log("admin") },
+      { path: "/", view: () => render.executeRender() },
+      { path: "/admin", view: () => render.executeRenderAdmin() },
     ];
   }
 
@@ -31,7 +33,7 @@ class Router {
       this.navigateTo(match.route.path);
     }
 
-    return match.route.view();
+    match.route.view();
   }
 
   triggerUrl() {
