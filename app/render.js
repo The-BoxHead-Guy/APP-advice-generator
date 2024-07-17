@@ -28,7 +28,7 @@ class Render {
   }
 
   executeRenderAdmin() {
-    this.adminView.push(renderAdmin, renderNav);
+    this.adminView.push(renderNav, renderAdmin);
 
     this.app.innerHTML = this.adminView
       .map((component) => component())

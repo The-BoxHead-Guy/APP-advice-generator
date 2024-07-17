@@ -1,0 +1,123 @@
+.crud-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  width: 90%;
+  overflow: auto;
+
+  position: absolute;
+  top: 10%;
+}
+
+.crud__table-container {
+  width: min(90%, 40rem);
+  height: max(60vh, 20rem);
+  overflow: auto;
+  background-color: var(--dark-grayish-blue);
+  border-radius: 0.5rem;
+
+  position: relative;
+}
+
+.crud__table {
+  margin: auto;
+  border-collapse: collapse;
+  text-align: start;
+  width: 100%;
+  position: relative;
+}
+
+.crud__table-header {
+  & tr {
+    background-color: var(--darker-blue);
+    & th {
+      padding: 1.15rem;
+    }
+  }
+}
+
+.crud__table th {
+  color: var(--neon-green);
+  padding: 0.5rem;
+}
+
+.crud__table-row {
+  width: 100%;
+  height: 3rem;
+  line-height: 1.4;
+
+  & td {
+    &:nth-child(1) {
+      width: 10%;
+    }
+
+    &:nth-child(2) {
+      width: 70%;
+    }
+
+    &:nth-child(3) {
+      width: 20%;
+
+      & div {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-around;
+        flex-flow: nowrap;
+
+        /*? @container should be used instead */
+        @media screen and (max-width: 600px) {
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-around;
+          gap: 0.5rem;
+        }
+
+        & i {
+          color: var(--black);
+          padding: 0.35rem;
+          font-weight: 700;
+          border-radius: 0.25rem;
+          font-size: calc(1.15rem + 0.125vw);
+
+          transition: all 0.2s;
+
+          &.fa-pen-to-square {
+            background-color: var(--yellow);
+          }
+          &.fa-trash-can {
+            background-color: var(--red);
+          }
+
+          &:hover {
+            transition: all 0.2s;
+            transform: scale(1.1);
+            color: var(--yellow);
+            background-color: var(--darker-blue);
+          }
+        }
+      }
+    }
+  }
+}
+
+.crud__table tr {
+  &:nth-child(even) {
+    background-color: var(--darker-grayish-blue);
+  }
+}
+
+.crud__table td {
+  padding: 0.9rem;
+
+  &:nth-child(1),
+  &:nth-child(3) {
+    text-align: center;
+  }
+
+  &:nth-child(1) {
+    color: var(--neon-green);
+  }
+}

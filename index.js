@@ -6,6 +6,7 @@ import Overlay from "./app/animations/overlay/overlay.js";
 import Signup from "./app/components/signup/signupForm.js";
 import DiceAnimation from "./app/animations/dice-animation.js";
 import Router from "./app/router.js";
+// import validateAdmin from "./app/components/admin/admin.js";
 
 // DOM loading event
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
   router.activatePopstateUrlChange();
 
   if (location.pathname === "/admin") {
+    // validateAdmin();
+
     /* Profile Loading */
     const profileLoading = new LoadProfile();
     profileLoading.setProfileData();

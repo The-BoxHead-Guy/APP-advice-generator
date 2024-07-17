@@ -1,17 +1,14 @@
-import Cookies from "/node_modules/js-cookie/dist/js.cookie.mjs";
+import Cookies from "js-cookie";
 import { URL_JWT_DECODE as URL } from "./../fetch/config.js";
 
 /* Getting token from cookie, it'll get the user back to index if there is no token */
 const token = Cookies.get("jwt")
   ? Cookies.get("jwt")
-  : (window.location.href = "/index.html");
+  : (window.location.href = "/");
 
 export default async function validateAdmin() {
   const adminRole = await getAdminRole();
-
-  if (adminRole !== "admin") {
-    window.location.href = "/index.html";
-  }
+  console.log(adminRole);
 }
 
 const fetchAdminData = async () => {
