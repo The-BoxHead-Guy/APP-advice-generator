@@ -9,10 +9,6 @@ export default class Admin {
     return this._data;
   }
 
-  get updateContainer() {
-    return this._updateContainer;
-  }
-
   async fetchData() {
     return await Crud.readData();
   }
@@ -33,19 +29,81 @@ export default class Admin {
     return input;
   }
 
-  createButton(buttonName) {
+  createButton(buttonName, buttonClass) {
     const button = document.createElement("button");
-    button.classList.add("crud__update-button");
+    button.classList.add(buttonClass);
     button.textContent = buttonName;
 
     return button;
   }
 
+  createDeleteConfirmationInterface() {
+    const confirmationContainer = document.createElement("div");
+    const confirmationButtonsContainer = document.createElement("div");
+    const text = document.createElement("p");
+    const yesButton = this.createButton(
+      "Yes",
+      "crud__confirmation-button--yes"
+    );
+    const noButton = this.createButton("No", "crud__confirmation-button--no");
+
+    text.textContent = "Do you want to proceed?";
+
+    confirmationContainer.appendChild(text);
+    confirmationContainer.appendChild(confirmationButtonsContainer);
+    confirmationButtonsContainer.appendChild(yesButton);
+    confirmationButtonsContainer.appendChild(noButton);
+    confirmationContainer.classList.add("crud__confirmation-container");
+
+    return {
+      container: confirmationContainer,
+      buttons: [yesButton, noButton],
+    };
+  }
+
+  async deleteTableRow(trigger, row) {
+    trigger.addEventListener("click", (event) => {
+      if (event.target.matches(".fa-trash-can")) {
+        const tableContainer = document.getElementById("crud");
+        // console.log("delete button clicked");
+
+        const data = {
+          id: row.childNodes[0].textContent,
+        };
+
+        const confirmationInterface = this.createDeleteConfirmationInterface();
+        tableContainer.appendChild(confirmationInterface.container);
+
+        // Button "no" function
+        confirmationInterface.buttons.forEach((button) => {
+          button.addEventListener("click", async (event) => {
+            if (event.target.matches(".crud__confirmation-button--no")) {
+              tableContainer.removeChild(confirmationInterface.container);
+            }
+
+            if (event.target.matches(".crud__confirmation-button--yes")) {
+              console.log("delete button clicked");
+
+              const outcome = await Crud.deleteDataOnServer(data);
+              console.log(outcome);
+
+              if (outcome.success) {
+                tableContainer.removeChild(confirmationInterface.container);
+                row.remove();
+              }
+            }
+          });
+        });
+      }
+    });
+  }
+
+  //! The name of updateTable should be changed for something more specific, such as "updateRow"
   async updateTable(trigger, row) {
     trigger.addEventListener("click", (event) => {
       if (event.target.matches(".fa-pen-to-square")) {
         const input = this.createInputBox(row.childNodes[1].textContent);
-        const updateButton = this.createButton("Update");
+        const updateButton = this.createButton("Update", "crud__update-button");
 
         const updateContainer = document.querySelector(
           ".crud__update-container"
@@ -130,6 +188,9 @@ export default class Admin {
 
       /* Handling edit button */
       this.updateTable(triggers, row);
+
+      /* Handling delete button */
+      this.deleteTableRow(triggers, row);
     });
   }
 }
