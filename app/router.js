@@ -1,3 +1,4 @@
+import LoadProfile from "./components/main/loadProfile.js";
 import Render from "./render.js";
 
 const render = new Render();
@@ -38,9 +39,14 @@ class Router {
 
   triggerUrl() {
     document.body.addEventListener("click", (event) => {
-      if (event.target.matches("[admin-crud]")) {
+      /* Checks if the clicked element is `admin options` */
+      if (event.target.matches("#admin-crud")) {
         event.preventDefault();
         this.navigateTo(event.target.href);
+
+        /* Loads profile after triggering the navigation */
+        const profileLoading = new LoadProfile();
+        profileLoading.setProfileData();
       }
     });
   }

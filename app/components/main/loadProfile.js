@@ -35,7 +35,6 @@ class LoadProfile {
 
       try {
         const profileInfo = await this.getProfileData(this.cookieToken);
-        console.log(profileInfo);
 
         if (!profileInfo) {
           throw new Error("Profile data doesn't exist");
@@ -43,6 +42,11 @@ class LoadProfile {
 
         this.loggedNav.classList.remove("hidden");
         this.username.textContent = profileInfo.username;
+
+        /* If admin is logged in, and it's in `/admin` location, then admin options won't be displayed */
+        if (location.pathname === "/admin") {
+          return;
+        }
 
         if (profileInfo.role === "admin") {
           const adminOptionsElement = this.createAdminOptionsElement();
