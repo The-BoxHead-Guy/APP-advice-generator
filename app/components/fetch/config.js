@@ -9,3 +9,5 @@ export const URL_SIGNUP = "http://127.0.0.1:8443/api/includes/signup.php";
 
 export const URL_JWT_DECODE =
   "http://127.0.0.1:8443/api/includes/session-auth.php";
+
+export const URL_CRUD = "http://127.0.0.1:8443/api/includes/crud.php";

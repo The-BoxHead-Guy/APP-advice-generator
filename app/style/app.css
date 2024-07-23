@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 @import url("app-nav.css");
 @import url("normalize.css");
+@import url("admin-render.css");
 
 :root {
   /* typography */
@@ -16,8 +17,15 @@
   --neon-green-dark: hsl(150, 100%, 56%);
   --grayish-blue: hsl(217, 19%, 38%);
   --dark-grayish-blue: hsl(217, 19%, 24%);
+  --darker-grayish-blue: hsl(217, 19%, 20%);
   --dark-blue: hsl(218, 23%, 16%);
   --darker-blue: hsl(218, 15%, 16%);
+
+  /* Neutral */
+  --black: #060606;
+  --white: #f5f5f5;
+  --yellow: #e8eb1a;
+  --red: #f52020;
 }
 
 /* Utilities */

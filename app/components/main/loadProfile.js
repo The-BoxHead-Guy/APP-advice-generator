@@ -23,7 +23,7 @@ class LoadProfile {
 
     anchorLink.classList.add("logged__admin-crud");
     anchorLink.setAttribute("id", "admin-crud");
-    anchorLink.setAttribute("href", "app/components/admin/admin.html");
+    anchorLink.setAttribute("href", "/admin");
     anchorLink.innerHTML = "admin options";
 
     return anchorLink;

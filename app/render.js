@@ -6,20 +6,34 @@ import { renderApp as renderAppLayout } from "./components/main/app-render.js";
 import renderOverlay from "./animations/overlay/render-overlay.js";
 import renderLoginForm from "./components/login/login-render.js";
 import renderSignupForm from "./components/signup/signup-render.js";
+import renderAdmin from "./components/admin/admin-render.js";
 
-function render() {
-  const app = document.getElementById("app");
+class Render {
+  constructor() {
+    this.app = document.getElementById("app");
+    this.mainComponents = [
+      renderNav,
+      renderAppLayout,
+      renderOverlay,
+      renderLoginForm,
+      renderSignupForm,
+    ];
+    this.adminView = [];
+  }
 
-  const components = [
-    renderNav,
-    renderAppLayout,
-    renderOverlay,
-    renderLoginForm,
-    renderSignupForm,
-  ];
+  executeRender() {
+    this.app.innerHTML = this.mainComponents
+      .map((component) => component())
+      .join("");
+  }
 
-  // Render components
-  app.innerHTML = components.map((component) => component()).join("");
+  executeRenderAdmin() {
+    this.adminView.push(renderNav, renderAdmin);
+
+    this.app.innerHTML = this.adminView
+      .map((component) => component())
+      .join("");
+  }
 }
 
-export default render;
+export default Render;
