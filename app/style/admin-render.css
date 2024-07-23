@@ -121,3 +121,25 @@
     color: var(--neon-green);
   }
 }
+
+.crud__update-container {
+  width: min(90%, 40rem);
+  margin-block-start: 2rem;
+  border-radius: 0.4rem;
+  height: auto;
+  display: flex;
+  gap: 1rem;
+
+  & input.crud__input {
+    height: 100%;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+    flex-grow: 5;
+  }
+
+  & .crud__update-button {
+    flex-grow: 1;
+    cursor: pointer;
+  }
+}

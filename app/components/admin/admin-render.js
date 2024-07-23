@@ -19,6 +19,9 @@ export default function renderAdmin() {
           </tbody>
         </table>
       </div>
+      <div class="crud__update-container">
+        
+      </div>
     </div>
   `;
 }
